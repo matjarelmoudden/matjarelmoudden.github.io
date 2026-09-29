@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>متجر المودن</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF6EF;
+    --teal:#1B4D4A;
+    --teal-dark:#123534;
+    --ochre:#C98A2C;
+    --ink:#231E18;
+    --sand:#EFE3D0;
+    --card:#FFFFFF;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Tajawal',sans-serif;
+    line-height:1.7;
+  }
+  h1,h2,h3,.brand{font-family:'Cairo',sans-serif;}
+
+  /* Header */
+  header{
+    background:var(--teal);
+    color:var(--cream);
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+  .brand{font-size:1.3rem;font-weight:800;letter-spacing:.5px;}
+  .brand span{color:var(--ochre);}
+  .brand small{
+    display:block;
+    font-family:'Tajawal',sans-serif;
+    font-weight:400;
+    font-size:.65rem;
+    color:var(--sand);
+    letter-spacing:1px;
+    margin-top:2px;
+  }
+  .header-btn-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .btn-caption{
+    font-size:.72rem;
+    color:var(--sand);
+    margin-top:5px;
+  }
+  .hero-langs{
+    margin-top:14px;
+    font-size:.82rem;
+    color:var(--sand);
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    position:relative;
+  }
+  .hero-langs .pt{font-size:1rem;margin-left:6px;}
+  .order-btn{
+    background:var(--ochre);
+    color:var(--ink);
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    font-weight:700;
+    font-family:'Tajawal',sans-serif;
+    font-size:.95rem;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+
+  /* Hero */
+  .hero{
+    padding:56px 20px 44px;
+    text-align:center;
+    background:linear-gradient(180deg,var(--teal) 0%, var(--teal-dark) 100%);
+    color:var(--cream);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(45deg, rgba(201,138,44,0.08) 0 2px, transparent 2px 22px);
+    pointer-events:none;
+  }
+  .hero h1{
+    font-size:2.1rem;
+    margin:0 0 14px;
+    line-height:1.35;
+    position:relative;
+  }
+  .hero p{
+    font-size:1.05rem;
+    color:var(--sand);
+    max-width:420px;
+    margin:0 auto 26px;
+    position:relative;
+  }
+  .hero .order-btn{
+    display:inline-block;
+    padding:13px 30px;
+    font-size:1rem;
+    position:relative;
+  }
+
+  /* Categories */
+  .cats{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding:16px 16px;
+    background:var(--sand);
+    -webkit-overflow-scrolling:touch;
+  }
+  .cats::-webkit-scrollbar{display:none;}
+  .cat-pill{
+    flex:0 0 auto;
+    background:var(--card);
+    border:1px solid rgba(27,77,74,0.15);
+    color:var(--teal-dark);
+    padding:9px 16px;
+    border-radius:20px;
+    font-size:.9rem;
+    font-weight:700;
+  }
+
+  /* Products */
+  section.products{padding:32px 18px 8px;}
+  section.products h2{
+    font-size:1.4rem;
+    text-align:center;
+    margin:0 0 4px;
+  }
+  .sub{
+    text-align:center;
+    color:#6b6255;
+    font-size:.9rem;
+    margin:0 0 26px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  @media (min-width:640px){
+    .grid{grid-template-columns:repeat(3,1fr);}
+  }
+  .card{
+    background:var(--card);
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid rgba(0,0,0,0.06);
+    display:flex;
+    flex-direction:column;
+  }
+  .thumb{
+    aspect-ratio:1/1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2.4rem;
+    background:var(--sand);
+  }
+  .card-body{padding:12px 14px 14px;}
+  .card-body h3{
+    font-size:.95rem;
+    margin:0 0 6px;
+    font-weight:700;
+  }
+  .price{
+    color:var(--ochre);
+    font-weight:800;
+    font-size:1rem;
+    margin:0 0 10px;
+  }
+  .card-body a{
+    display:block;
+    text-align:center;
+    background:var(--teal);
+    color:var(--cream);
+    text-decoration:none;
+    padding:8px 0;
+    border-radius:8px;
+    font-size:.85rem;
+    font-weight:700;
+  }
+
+  /* Trust strip */
+  .trust{
+    margin:44px 0 0;
+    padding:26px 20px;
+    background:var(--teal-dark);
+    color:var(--sand);
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    flex-wrap:wrap;
+    text-align:center;
+    font-size:.85rem;
+  }
+  .trust div{max-width:120px;}
+  .trust .ic{font-size:1.5rem;display:block;margin-bottom:6px;}
+
+  footer{
+    padding:32px 20px 8px;
+    text-align:center;
+    color:#6b6255;
+    font-size:.85rem;
+  }
+  footer .brand{color:var(--teal-dark);font-size:1.1rem;margin-bottom:6px;}
+  .socials{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    margin:14px 0 22px;
+  }
+  .socials a{
+    color:var(--teal-dark);
+    text-decoration:none;
+    font-weight:700;
+    font-size:.85rem;
+    border:1px solid rgba(27,77,74,0.2);
+    padding:7px 14px;
+    border-radius:18px;
+  }
+  .kingdom-strip{
+    margin-top:22px;
+    padding:20px 20px 16px;
+    background:var(--teal-dark);
+    color:var(--sand);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+  }
+  .kingdom-strip svg{width:42px;height:auto;}
+  .kingdom-strip .title{
+    font-family:'Cairo',sans-serif;
+    font-weight:800;
+    font-size:1rem;
+  }
+  .kingdom-strip .rights{
+    font-size:.78rem;
+    color:#c9c2b2;
+    margin-top:4px;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --cream:#1C1812;
+      --ink:#F2ECE0;
+      --card:#26221B;
+      --sand:#2E2A22;
+    }
+    body{background:var(--cream);}
+    .cat-pill{border-color:rgba(255,255,255,0.12);}
+    .card{border-color:rgba(255,255,255,0.08);}
+    footer{color:#a99f8f;}
+    .sub{color:#a99f8f;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">متجر <span>المودن</span><small>Matjar el moudden</small></div>
+  <div class="header-btn-wrap">
+    <a class="order-btn" href="#products">تصفح المنتوجات</a>
+    <span class="btn-caption">تسوق بكل أريحية</span>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>نقدم لكم منتجات ذات جودة عالية،<br>وبثمن رخيص في كل المناسبات</h1>
+  <p>مع متجر المودن: كل مرة تلقانا وجدنا لك منتوج بثمن معقول يفرحك، وجودة تسرك، وثقة في التعامل تريحك.</p>
+  <a class="order-btn" href="#products">شوف الفرص ديال اليوم</a>
+  <div class="hero-langs">
+    <span><span class="pt">👆</span>See today's deals</span>
+    <span>Voir les offres du jour</span>
+    <span>Ver las ofertas de hoy</span>
+  </div>
+</section>
+
+<div class="cats">
+  <div class="cat-pill">لبس</div>
+  <div class="cat-pill">أدوات المطبخ</div>
+  <div class="cat-pill">إلكترونيك</div>
+  <div class="cat-pill">لأطفال</div>
+  <div class="cat-pill">مستلزمات المنزل</div>
+  <div class="cat-pill">هدايا ومناسبات</div>
+</div>
+
+<section class="products" id="products">
+  <h2>الفرص ديال اليوم</h2>
+  <p class="sub">نماذج توضيحية — بدّلها بمنتوجاتك الحقيقية</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="thumb">🍱</div>
+      <div class="card-body">
+        <h3>لانش بوكس حراري</h3>
+        <p class="price">99 درهم</p>
+        <a href="https://wa.me/212651408588?text=بغيت%20نطلب%20لانش%20بوكس%20حراري" target="_blank" rel="noopener">اطلب عبر واتساب</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb">🧥</div>
+      <div class="card-body">
+        <h3>جاكيط شتوي</h3>
+        <p class="price">149 درهم</p>
+        <a href="https://wa.me/212651408588?text=بغيت%20نطلب%20جاكيط%20شتوي" target="_blank" rel="noopener">اطلب عبر واتساب</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb">🔌</div>
+      <div class="card-body">
+        <h3>سماعات بلوتوث</h3>
+        <p class="price">179 درهم</p>
+        <a href="https://wa.me/212651408588?text=بغيت%20نطلب%20سماعات%20بلوتوث" target="_blank" rel="noopener">اطلب عبر واتساب</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb">🧸</div>
+      <div class="card-body">
+        <h3>لعبة تعليمية للأطفال</h3>
+        <p class="price">69 درهم</p>
+        <a href="https://wa.me/212651408588?text=بغيت%20نطلب%20لعبة%20للأطفال" target="_blank" rel="noopener">اطلب عبر واتساب</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb">🎁</div>
+      <div class="card-body">
+        <h3>طقم هدايا للمناسبات</h3>
+        <p class="price">129 درهم</p>
+        <a href="https://wa.me/212651408588?text=بغيت%20نطلب%20طقم%20هدايا" target="_blank" rel="noopener">اطلب عبر واتساب</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb">🏠</div>
+      <div class="card-body">
+        <h3>أدوات منزلية عملية</h3>
+        <p class="price">89 درهم</p>
+        <a href="https://wa.me/212651408588?text=بغيت%20نطلب%20أدوات%20منزلية" target="_blank" rel="noopener">اطلب عبر واتساب</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="trust">
+  <div><span class="ic">✅</span>جودة أصلية مضمونة</div>
+  <div><span class="ic">💵</span>الدفع عند الاستلام</div>
+  <div><span class="ic">🚚</span>توصيل لجميع المدن</div>
+</div>
+
+<footer>
+  <div class="brand">متجر المودن</div>
+  <p>منتجات ذات جودة ورخيصة</p>
+  <p>للطلب والاستفسار: <a href="https://wa.me/212651408588" style="color:var(--teal-dark);font-weight:700;">تواصل عبر واتساب</a></p>
+  <div class="socials">
+    <a href="https://wa.me/212651408588" target="_blank" rel="noopener">واتساب</a>
+    <a href="https://t.me/Elmoudden_bil" target="_blank" rel="noopener">تيليكرام</a>
+    <a href="https://instagram.com/elmoudden_bi" target="_blank" rel="noopener">انستغرام</a>
+  </div>
+</footer>
+
+<div class="kingdom-strip">
+  <svg viewBox="0 0 200 217" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="خريطة المغرب">
+    <path d="M140.7,1.4 L147.9,0.0 L148.8,3.0 L157.4,9.9 L165.9,9.2 L178.1,6.4 L187.5,11.3 L190.5,11.3 L193.4,16.3 L193.7,20.6 L194.1,28.5 L195.3,37.1 L199.1,45.7 L200.0,54.0 L187.7,55.0 L180.2,59.3 L175.1,68.6 L166.2,71.4 L156.1,80.0 L144.8,87.2 L132.1,95.1 L119.5,104.4 L105.9,117.7 L105.9,141.6 L63.8,141.6 L63.8,178.1 L51.2,208.5 L7.0,208.5 L0.0,216.5 L1.3,213.2 L4.4,196.0 L13.3,177.4 L14.2,174.3 L25.3,162.4 L32.2,139.7 L46.1,125.9 L52.1,113.8 L65.1,108.7 L75.2,105.1 L87.0,93.4 L94.2,78.3 L92.0,62.9 L98.7,51.4 L108.1,37.8 L119.2,32.8 L129.1,26.8 L132.1,18.5 L137.8,9.9 L140.7,1.4 Z"
+      fill="#C1272D" />
+    <path transform="translate(103.6,97.8) scale(3.0)"
+      d="M0,-10 L2.35,-3.09 L9.51,-3.09 L3.82,1.18 L5.88,8.09 L0,3.82 L-5.88,8.09 L-3.82,1.18 L-9.51,-3.09 L-2.35,-3.09 Z"
+      fill="#006233" />
+  </svg>
+  <div class="title">المملكة المغربية الشريفة</div>
+  <div class="rights">© جميع الحقوق محفوظة — متجر المودن — 1448هـ / 2026م</div>
+</div>
+
+</body>
+</html>
