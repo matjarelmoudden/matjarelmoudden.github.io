@@ -126,15 +126,20 @@
   }
 
   /* Categories */
-  .cats{
+  .cats-all{
     display:flex;
-    gap:10px;
-    overflow-x:auto;
-    padding:16px 16px;
+    justify-content:center;
+    padding:16px 16px 0;
     background:var(--sand);
-    -webkit-overflow-scrolling:touch;
   }
-  .cats::-webkit-scrollbar{display:none;}
+  .cats-all .cat-pill{padding:8px 30px;}
+  .cats{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:6px;
+    padding:10px 10px 16px;
+    background:var(--sand);
+  }
   .search-wrap{
     display:flex;
     align-items:center;
@@ -179,14 +184,24 @@
   .feature-tile.new span{color:var(--ochre);}
   .feature-tile.best{background:var(--ochre);color:#fff;}
   .cat-pill{
-    flex:0 0 auto;
     background:var(--card);
     border:1px solid rgba(27,77,74,0.15);
     color:var(--teal-dark);
-    padding:9px 16px;
-    border-radius:20px;
-    font-size:.9rem;
+    border-radius:12px;
+    font-size:.6rem;
     font-weight:700;
+    line-height:1.25;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    min-height:48px;
+    padding:4px 3px;
+  }
+  .cats-all .cat-pill{
+    font-size:.9rem;
+    border-radius:20px;
+    min-height:auto;
   }
 
   /* Products */
@@ -345,8 +360,11 @@
   <input id="searchInput" type="text" placeholder="ابحث عن منتوج…" oninput="filterProducts()">
 </div>
 
-<div class="cats" id="catsRow">
+<div class="cats-all">
   <div class="cat-pill active" data-tag="الكل" onclick="selectCat(this)">الكل</div>
+</div>
+
+<div class="cats" id="catsRow">
   <div class="cat-pill" data-tag="المنتوجات المجالية الطبيعية" onclick="selectCat(this)">المنتوجات المجالية الطبيعية</div>
   <div class="cat-pill" data-tag="أثواب الذوق الرفيع" onclick="selectCat(this)">أثواب الذوق الرفيع</div>
   <div class="cat-pill" data-tag="مستلزمات طبية" onclick="selectCat(this)">مستلزمات طبية</div>
@@ -357,6 +375,8 @@
   <div class="cat-pill" data-tag="مستلزمات السيارات والدرجات" onclick="selectCat(this)">مستلزمات السيارات والدرجات</div>
   <div class="cat-pill" data-tag="مستلزمات البستنة والزراعة" onclick="selectCat(this)">مستلزمات البستنة والزراعة</div>
   <div class="cat-pill" data-tag="مستلزمات الحرف والصناعة" onclick="selectCat(this)">مستلزمات الحرف والصناعة</div>
+  <div class="cat-pill" data-tag="مستلزمات متنوعة" onclick="selectCat(this)">مستلزمات متنوعة</div>
+  <div class="cat-pill" data-tag="مستلزمات مستعملة" onclick="selectCat(this)">مستلزمات مستعملة</div>
 </div>
 
 <div class="feature-tiles">
