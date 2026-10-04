@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
 <title>متجر المودن</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&family=Tajawal:wght@400;500;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#FAF6EF;
@@ -50,7 +51,7 @@
     font-family:'Tajawal',sans-serif;
     font-weight:400;
     font-size:.65rem;
-    color:var(--sand);
+    color:#F3ECDA;
     letter-spacing:1px;
     margin-top:2px;
   }
@@ -61,13 +62,13 @@
   }
   .btn-caption{
     font-size:.72rem;
-    color:var(--sand);
+    color:#F3ECDA;
     margin-top:5px;
   }
   .hero-langs{
     margin-top:14px;
     font-size:.82rem;
-    color:var(--sand);
+    color:#F3ECDA;
     display:flex;
     flex-direction:column;
     gap:3px;
@@ -76,7 +77,7 @@
   .hero-langs .pt{font-size:1rem;margin-left:6px;}
   .order-btn{
     background:var(--ochre);
-    color:var(--ink);
+    color:#ffffff;
     border:none;
     padding:10px 18px;
     border-radius:8px;
@@ -112,7 +113,7 @@
   }
   .hero p{
     font-size:1.05rem;
-    color:var(--sand);
+    color:#F3ECDA;
     max-width:420px;
     margin:0 auto 26px;
     position:relative;
@@ -134,6 +135,49 @@
     -webkit-overflow-scrolling:touch;
   }
   .cats::-webkit-scrollbar{display:none;}
+  .search-wrap{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--card);
+    border:1px solid rgba(0,0,0,0.12);
+    border-radius:12px;
+    padding:10px 14px;
+    margin:18px 16px 0;
+    color:#6b6255;
+  }
+  .search-wrap svg{width:19px;height:19px;flex-shrink:0;}
+  .search-wrap input{
+    border:none;
+    outline:none;
+    background:transparent;
+    font-family:'Tajawal',sans-serif;
+    font-size:.92rem;
+    width:100%;
+    color:var(--ink);
+  }
+  .cat-pill.active{
+    background:var(--teal);
+    color:#fff;
+    border-color:var(--teal);
+  }
+  .feature-tiles{
+    display:flex;
+    gap:10px;
+    padding:4px 16px 0;
+  }
+  .feature-tile{
+    flex:1;
+    text-align:center;
+    font-weight:700;
+    font-size:.85rem;
+    padding:12px 8px;
+    border-radius:12px;
+    cursor:pointer;
+  }
+  .feature-tile.new{background:#DCEFD8;color:#1a1a1a;}
+  .feature-tile.new span{color:var(--ochre);}
+  .feature-tile.best{background:var(--ochre);color:#fff;}
   .cat-pill{
     flex:0 0 auto;
     background:var(--card);
@@ -187,11 +231,16 @@
     font-size:.95rem;
     margin:0 0 6px;
     font-weight:700;
+    color:#1a1a1a;
   }
   .price{
+    display:inline-block;
+    background:#DCEFD8;
     color:var(--ochre);
     font-weight:800;
-    font-size:1rem;
+    font-size:.92rem;
+    padding:4px 12px;
+    border-radius:14px;
     margin:0 0 10px;
   }
   .card-body a{
@@ -211,7 +260,7 @@
     margin:44px 0 0;
     padding:26px 20px;
     background:var(--teal-dark);
-    color:var(--sand);
+    color:#F3ECDA;
     display:flex;
     justify-content:center;
     gap:28px;
@@ -220,7 +269,7 @@
     font-size:.85rem;
   }
   .trust div{max-width:120px;}
-  .trust .ic{font-size:1.5rem;display:block;margin-bottom:6px;}
+  .trust .ic{width:30px;height:30px;display:block;margin:0 auto 8px;color:var(--ochre);}
 
   footer{
     padding:32px 20px 8px;
@@ -248,7 +297,7 @@
     margin-top:22px;
     padding:20px 20px 16px;
     background:var(--teal-dark);
-    color:var(--sand);
+    color:#F3ECDA;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -266,19 +315,8 @@
     margin-top:4px;
   }
 
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --cream:#1C1812;
-      --ink:#F2ECE0;
-      --card:#26221B;
-      --sand:#2E2A22;
-    }
-    body{background:var(--cream);}
-    .cat-pill{border-color:rgba(255,255,255,0.12);}
-    .card{border-color:rgba(255,255,255,0.08);}
-    footer{color:#a99f8f;}
-    .sub{color:#a99f8f;}
-  }
+  /* Site is intentionally locked to the light appearance at all times,
+     regardless of the visitor's device dark-mode setting. */
 </style>
 </head>
 <body>
@@ -302,21 +340,36 @@
   </div>
 </section>
 
-<div class="cats">
-  <div class="cat-pill">لبس</div>
-  <div class="cat-pill">أدوات المطبخ</div>
-  <div class="cat-pill">إلكترونيك</div>
-  <div class="cat-pill">لأطفال</div>
-  <div class="cat-pill">مستلزمات المنزل</div>
-  <div class="cat-pill">هدايا ومناسبات</div>
+<div class="search-wrap">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.2" y2="16.2"/></svg>
+  <input id="searchInput" type="text" placeholder="ابحث عن منتوج…" oninput="filterProducts()">
+</div>
+
+<div class="cats" id="catsRow">
+  <div class="cat-pill active" data-tag="الكل" onclick="selectCat(this)">الكل</div>
+  <div class="cat-pill" data-tag="المنتوجات المجالية الطبيعية" onclick="selectCat(this)">المنتوجات المجالية الطبيعية</div>
+  <div class="cat-pill" data-tag="أثواب الذوق الرفيع" onclick="selectCat(this)">أثواب الذوق الرفيع</div>
+  <div class="cat-pill" data-tag="مستلزمات طبية" onclick="selectCat(this)">مستلزمات طبية</div>
+  <div class="cat-pill" data-tag="مستلزمات التخييم" onclick="selectCat(this)">مستلزمات التخييم</div>
+  <div class="cat-pill" data-tag="مستلزمات مكتبية ومدرسية" onclick="selectCat(this)">مستلزمات مكتبية ومدرسية</div>
+  <div class="cat-pill" data-tag="مستلزمات إلكترونية" onclick="selectCat(this)">مستلزمات إلكترونية</div>
+  <div class="cat-pill" data-tag="مستلزمات منزلية" onclick="selectCat(this)">مستلزمات منزلية</div>
+  <div class="cat-pill" data-tag="مستلزمات السيارات والدرجات" onclick="selectCat(this)">مستلزمات السيارات والدرجات</div>
+  <div class="cat-pill" data-tag="مستلزمات البستنة والزراعة" onclick="selectCat(this)">مستلزمات البستنة والزراعة</div>
+  <div class="cat-pill" data-tag="مستلزمات الحرف والصناعة" onclick="selectCat(this)">مستلزمات الحرف والصناعة</div>
+</div>
+
+<div class="feature-tiles">
+  <div class="feature-tile new" data-tag="فرص اليوم" onclick="selectCat(this)">🆕 فرص اليوم <span>الجديد</span></div>
+  <div class="feature-tile best" data-tag="الأكثر طلبا" onclick="selectCat(this)">🔥 المنتجات الأكثر طلبا</div>
 </div>
 
 <section class="products" id="products">
   <h2>الفرص ديال اليوم</h2>
   <p class="sub">نماذج توضيحية — بدّلها بمنتوجاتك الحقيقية</p>
-  <div class="grid">
+  <div class="grid" id="grid">
 
-    <div class="card">
+    <div class="card" data-cat="مستلزمات منزلية|فرص اليوم">
       <div class="thumb">🍱</div>
       <div class="card-body">
         <h3>لانش بوكس حراري</h3>
@@ -325,7 +378,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="أثواب الذوق الرفيع">
       <div class="thumb">🧥</div>
       <div class="card-body">
         <h3>جاكيط شتوي</h3>
@@ -334,7 +387,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="مستلزمات إلكترونية|الأكثر طلبا">
       <div class="thumb">🔌</div>
       <div class="card-body">
         <h3>سماعات بلوتوث</h3>
@@ -343,7 +396,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="مستلزمات مكتبية ومدرسية">
       <div class="thumb">🧸</div>
       <div class="card-body">
         <h3>لعبة تعليمية للأطفال</h3>
@@ -352,7 +405,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="مستلزمات الحرف والصناعة|فرص اليوم">
       <div class="thumb">🎁</div>
       <div class="card-body">
         <h3>طقم هدايا للمناسبات</h3>
@@ -361,7 +414,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-cat="مستلزمات منزلية|الأكثر طلبا">
       <div class="thumb">🏠</div>
       <div class="card-body">
         <h3>أدوات منزلية عملية</h3>
@@ -371,12 +424,22 @@
     </div>
 
   </div>
+  <p id="noResults" style="display:none;text-align:center;color:#6b6255;margin-top:18px;">ما كايناش منتوجات فهاد الفئة دابا.</p>
 </section>
 
 <div class="trust">
-  <div><span class="ic">✅</span>جودة أصلية مضمونة</div>
-  <div><span class="ic">💵</span>الدفع عند الاستلام</div>
-  <div><span class="ic">🚚</span>توصيل لجميع المدن</div>
+  <div>
+    <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="26" height="22" rx="1"/><line x1="13" y1="15" x2="27" y2="15"/><line x1="13" y1="20" x2="24" y2="20"/><circle cx="34" cy="28" r="6"/><polyline points="31,34 32,41 34,39 36,41 37,34"/></svg>
+    جودة أصلية مضمونة
+  </div>
+  <div>
+    <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 L28 7 L31 14"/><rect x="7" y="14" width="34" height="24" rx="3"/><path d="M41 23 H33 a4 4 0 0 0 0 8 H41"/><circle cx="33" cy="27" r="1.6" fill="currentColor"/></svg>
+    الدفع عند الاستلام
+  </div>
+  <div>
+    <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="16" width="22" height="16" rx="1.5"/><path d="M26 21 H35 L42 28 V32 H26 Z"/><circle cx="14" cy="35" r="3.3"/><circle cx="35" cy="35" r="3.3"/><line x1="4" y1="22" x2="14" y2="22"/><line x1="4" y1="27" x2="12" y2="27"/></svg>
+    توصيل لجميع المدن
+  </div>
 </div>
 
 <footer>
@@ -402,5 +465,42 @@
   <div class="rights">© جميع الحقوق محفوظة — متجر المودن — 1448هـ / 2026م</div>
 </div>
 
+<script>
+function selectCat(el){
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  if(el.classList.contains('cat-pill')) el.classList.add('active');
+  else document.querySelector('.cat-pill[data-tag="الكل"]').classList.remove('active');
+  document.getElementById('searchInput').value = '';
+  const tag = el.dataset.tag;
+  const cards = document.querySelectorAll('#grid .card');
+  let shown = 0;
+  cards.forEach(c=>{
+    const cats = (c.dataset.cat||'').split('|');
+    const match = (tag === 'الكل') || cats.includes(tag);
+    c.style.display = match ? '' : 'none';
+    if(match) shown++;
+  });
+  document.getElementById('noResults').style.display = shown === 0 ? 'block' : 'none';
+}
+function filterProducts(){
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  const q = document.getElementById('searchInput').value.trim();
+  const cards = document.querySelectorAll('#grid .card');
+  let shown = 0;
+  if(q === ''){
+    document.querySelector('.cat-pill[data-tag="الكل"]').classList.add('active');
+    cards.forEach(c=>{c.style.display='';});
+    document.getElementById('noResults').style.display = 'none';
+    return;
+  }
+  cards.forEach(c=>{
+    const name = c.querySelector('h3').textContent;
+    const match = name.includes(q);
+    c.style.display = match ? '' : 'none';
+    if(match) shown++;
+  });
+  document.getElementById('noResults').style.display = shown === 0 ? 'block' : 'none';
+}
+</script>
 </body>
 </html>
